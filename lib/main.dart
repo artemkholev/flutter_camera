@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Web Camera',
+      title: 'Камера',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
@@ -38,7 +38,7 @@ class _CameraScreenState extends State<CameraScreen> {
       videoElement.srcObject = mediaStream;
       videoElement.play();
 
-      final canvas = html.CanvasElement(width: 1000, height: 1000);
+      final canvas = html.CanvasElement(width: 640, height: 480);
       final context = canvas.context2D;
 
       videoElement.onCanPlay.listen((event) {
@@ -54,7 +54,7 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Web Camera'),
+        title: const Text('Камера'),
       ),
       body: Center(
         child: Column(
@@ -63,16 +63,15 @@ class _CameraScreenState extends State<CameraScreen> {
             if (_imagePath != null)
               Image.network(
                 _imagePath!,
-                width: 300,
-                height: 300,
+                width: 1000,
+                height: 1000,
                 fit: BoxFit.cover,
               )
             else
-              const Text('No image captured.'),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _takePhoto,
-              child: const Text('Take Photo'),
+              child: const Text('Сделать фото'),
             ),
           ],
         ),
